@@ -1,1 +1,2 @@
 # vote_tracker
+Created a vote tracker using an image album of 14 kitten photos. Made a KittenPhoto constructor function that includes each photo.Pushed each photo into my empty kitten photo array. Created a Tracker function with methods that displays the photos, logs a vote to each photo that is chosen when clicked, and made a chart function that shows up and changes with the log of each vote. Added event listener for right photo, left photo, and my button that chooses a new set of pictures. 
