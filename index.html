@@ -5,27 +5,29 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<title>Kitten Vote Tracker</title>
 	<link rel="stylesheet" type="text/css" href="css/styles.css"/>
-	<link rel="stylesheet" href="https://color.adobe.com/Kittens-in-a-cage-color-theme-2777559/" type="text/css"/>
 	<link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Montserrat">
 	<script src="js/Chart.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+	<script src="js/app.js"></script>
 </head>
 
 	<body>
 		<h1>The Catroom</h1>
 		<h3>Below you may choose between two cats based on which one you like the most. After selecting the one you like, go ahead and click the button for more kitten options. Have fun and choose wisely!</h3>
 		<p>Will you choose this cute kitty?</p>
-		<div id="leftPhoto1">
-		<img id="leftPhoto" src="leftPhoto"/>
-		</div>
-		<canvas id="kittyChart" width="250" height="250"></canvas>
-		<p>Or this adorable little guy?</p>
-		<div id="rightPhoto1">
-		<img id="rightPhoto" src=""/>
-		</div>
-		<div id="kitten-button">
-		<button type="button" id="nextButton">Next</button>
-		</div>
-		<script src="js/app.js"></script>
+		<main id="main">
+			<div id="leftPhoto1">
+			<img id="leftPhoto" src=""/>
+			</div>
+			<canvas id="kittyChart" width="250" height="250"></canvas>
+			<p>Or this adorable little guy?</p>
+			<div id="rightPhoto1">
+			<img id="rightPhoto" src=""/>
+			</div>
+			<div id="kitten-button">
+			<button type="button" id="nextButton">Next</button>
+			</div>
+		</main>
 	</body>
 
 </html>
