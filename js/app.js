@@ -154,9 +154,7 @@ $(nextbutton).click(function() {
 
 tracker.getRandomPhoto();
 	console.log(this.rightPhoto);
-	// while (this.rightPhoto === this.leftPhoto) {
-	// 	this.leftPhoto = photoArray[Math.floor(Math.random() * (photoArray.length - 1))];
-	// }
+	
 });
 
 
