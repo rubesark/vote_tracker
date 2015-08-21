@@ -1,4 +1,4 @@
- body {
+body {
         font-family: 'Montserrat', serif;
         font-size: 20px;
         background: #0388A6;
@@ -8,4 +8,24 @@ button {
   font-weight: bold;
   color: #8C7765;
   background-color: #222426;
+}
+
+#leftPhoto1 {border: 3px solid #BEDB39; height: 250px; width: 250px;}
+
+button:hover {
+  -webkit-transform: scale(1.3);
+  -ms-transform: scale(1.3);
+  transform: scale(1.3);
+}
+
+#leftPhoto1::selection {
+  -webkit-transform: scale(1.3);
+  -ms-transform: scale(1.3);
+  transform: scale(1.3);
+}
+
+#rightPhoto1 {
+  border: 3px solid #FD7400;
+  height: 250px;
+  width: 250px;
 }

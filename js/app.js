@@ -1,5 +1,7 @@
 'use strict';
 
+$(document).ready(function() {
+
 var photoArray = [ ];
 var rightPhoto;
 var leftPhoto;
@@ -81,6 +83,7 @@ Tracker.prototype.makeChart = function() {
     }
 ];
 console.dir(data);
+
 var options = {
     //Boolean - Whether we should show a stroke on each segment
     segmentShowStroke : true,
@@ -111,7 +114,7 @@ var options = {
 
 };
 
-	var ctx = document.getElementById('kittyChart').getContext('2d');
+	var ctx = $('#kittyChart').get(0).getContext('2d');
 	console.dir(ctx);
 	var myCatChart = new Chart(ctx).Pie(data, options);
 
@@ -120,39 +123,39 @@ var options = {
 Tracker.prototype.getRandomPhoto = function() {
 	this.leftPhoto = photoArray[Math.floor(Math.random() * (photoArray.length - 1))];
 	this.rightPhoto = photoArray[Math.floor(Math.random() * (photoArray.length - 1))];
-	var img1 = document.getElementById('leftPhoto');
+	var img1 = $('#leftPhoto')[0];
 		img1.src = this.leftPhoto.path;
-	var img2 = document.getElementById('rightPhoto');
+	var img2 = $('#rightPhoto')[0];
 		img2.src = this.rightPhoto.path;
 		this.makeChart();
 };
 
+$('#leftPhoto1').click(function(){
+   $('.selected').removeClass('selected'); // removes the previous selected class
+   $(this).addClass('selected'); // adds the class to the clicked image
+});
 
-var lphoto = document.getElementById('leftPhoto');
-var rphoto = document.getElementById('rightPhoto');
-var results = document.getElementById('results');
-var nextbutton = document.getElementById('nextButton');
+var lphoto = $('#leftPhoto');
+var rphoto = $('#rightPhoto');
+var results = $('#results');
+var nextbutton = $('#nextButton');
 
-rphoto.addEventListener('click', function(e) {
+$(rphoto).click(function(e) {
 	tracker.addVote(e);
 });
 
-lphoto.addEventListener('click', function(e) {
+$(lphoto).click(function(e) {
 	tracker.addVote(e);
 });
 
-nextbutton.addEventListener('click', function() {
+$(nextbutton).click(function() {
 	tracker.getRandomPhoto();
 });
 
-
-
 tracker.getRandomPhoto();
 	console.log(this.rightPhoto);
-	while (this.rightPhoto === this.leftPhoto) {
-		this.leftPhoto = photoArray[Math.floor(Math.random() * (photoArray.length - 1))];
-	}
-
+	
+});
 
 
 
