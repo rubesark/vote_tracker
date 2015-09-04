@@ -3,13 +3,51 @@
 $(document).ready(function() {
 
 var photoArray = [ ];
+var imgurPics = [ ];
 var rightPhoto;
 var leftPhoto;
 
+$.ajax({
+  url: 'https://api.imgur.com/3/album/DDoWy.json',
+  method: 'GET',
+  headers: {
+    'Authorization': 'Client-ID 7278c7482623289'
+  }
+})
+
+.done(function(res) {
+  $('#nextButton').hide();
+  console.log(imgurPics);
+  newKitten();
+  tracker.getRandomPhoto();
+})
+
+.fail(function(err) {
+  console.log(err);
+});
+
+var newKitten = function () {
+  for (var i = 0; i < imgurPics.length; i++) {
+    photoArray[i] = new Photo(imgurPics[i].link);
+  };
+  
+}
+
+function showFromImgur() {
+  var rand = Math.floor(Math.random() * imgurPics.length + 1);
+  var displayPic = '<img src="' + imgurPics[rand].link + '">';
+  $('#picContainer').html(displayPic);
+}
+
+$('another').click(function() {
+  showFromImgur();
+  console.log('random');
+});
+
 var KittenPhoto = function(fileLocation, votes) {
-	this.path = fileLocation;
-	this.votes = 1;
-	this.index = [ ];
+  this.path = fileLocation;
+  this.votes = 1;
+  this.index = [ ];
 };
 
 var photo0 = new KittenPhoto('img/photo0.jpg', 1);
@@ -44,31 +82,31 @@ photoArray.push(photo13);
 console.log(photoArray);
 
 var Tracker = function() {
-	this.leftPhoto;
-	this.rightPhoto;
+  this.leftPhoto;
+  this.rightPhoto;
 };
 
 var tracker = new Tracker();
 
 Tracker.prototype.addVote = function(e) {
-	var photo = this.findPhoto(e.target.attributes[1].value); 
-	photo.votes++;
-	console.log(photo.votes);
-	this.makeChart();
+  var photo = this.findPhoto(e.target.attributes[1].value); 
+  photo.votes++;
+  console.log(photo.votes);
+  this.makeChart();
 };
  
 Tracker.prototype.findPhoto = function(filePath) {
-	for (var i = 0; i < photoArray.length; i++) {
-		if (filePath === photoArray[i].path) {
-			return photoArray[i];
+  for (var i = 0; i < photoArray.length; i++) {
+    if (filePath === photoArray[i].path) {
+      return photoArray[i];
 
-		}
-	}
+    }
+  }
 };
 
 Tracker.prototype.makeChart = function() {
-	console.log('makeChart');
-	var data = [
+  console.log('makeChart');
+  var data = [
     {
         value: this.leftPhoto.votes,
         color:"#F7464A",
@@ -114,20 +152,20 @@ var options = {
 
 };
 
-	var ctx = $('#kittyChart').get(0).getContext('2d');
-	console.dir(ctx);
-	var myCatChart = new Chart(ctx).Pie(data, options);
+  var ctx = $('#kittyChart').get(0).getContext('2d');
+  console.dir(ctx);
+  var myCatChart = new Chart(ctx).Pie(data, options);
 
 };
 
 Tracker.prototype.getRandomPhoto = function() {
-	this.leftPhoto = photoArray[Math.floor(Math.random() * (photoArray.length - 1))];
-	this.rightPhoto = photoArray[Math.floor(Math.random() * (photoArray.length - 1))];
-	var img1 = $('#leftPhoto')[0];
-		img1.src = this.leftPhoto.path;
-	var img2 = $('#rightPhoto')[0];
-		img2.src = this.rightPhoto.path;
-		this.makeChart();
+  this.leftPhoto = photoArray[Math.floor(Math.random() * (photoArray.length - 1))];
+  this.rightPhoto = photoArray[Math.floor(Math.random() * (photoArray.length - 1))];
+  var img1 = $('#leftPhoto')[0];
+    img1.src = this.leftPhoto.path;
+  var img2 = $('#rightPhoto')[0];
+    img2.src = this.rightPhoto.path;
+    this.makeChart();
 };
 
 $('#leftPhoto1').click(function(){
@@ -141,24 +179,18 @@ var results = $('#results');
 var nextbutton = $('#nextButton');
 
 $(rphoto).click(function(e) {
-	tracker.addVote(e);
+  tracker.addVote(e);
 });
 
 $(lphoto).click(function(e) {
-	tracker.addVote(e);
+  tracker.addVote(e);
 });
 
 $(nextbutton).click(function() {
-	tracker.getRandomPhoto();
+  tracker.getRandomPhoto();
 });
 
 tracker.getRandomPhoto();
-	console.log(this.rightPhoto);
-	
+  console.log(this.rightPhoto);
+  
 });
-
-
-
-
-
-
